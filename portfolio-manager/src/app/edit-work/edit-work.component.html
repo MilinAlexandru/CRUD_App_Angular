@@ -1,0 +1,22 @@
+<div class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Mode</h5>
+          <button type="button" class="btn-close" (click)="cancelEdit()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="editTitle">Title:</label>
+          <input type="text" id="editTitle" name="editTitle" [(ngModel)]="work.title" required>
+  
+          <label for="editDescription">Description:</label>
+          <textarea id="editDescription" name="editDescription" [(ngModel)]="work.description" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="saveChanges.emit(work)">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

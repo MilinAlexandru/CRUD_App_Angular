@@ -1,0 +1,63 @@
+<div class="work-list-container">
+
+    <div class="container formStyleAddWork">
+    <form (ngSubmit)="addWork()">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" [(ngModel)]="newWork.title" required>
+  
+      <label for="description">Description:</label>
+      <input type="text" id="description" name="description" [(ngModel)]="newWork.description" required>
+
+      <label for="imageUrl">ImageUrl:</label>
+      <input type="text" id="imageUrl" name="imageUrl" [(ngModel)]="newWork.imageUrl" required>
+
+      <label for="hidden">hidden:</label>
+      <input id="hidden" name="hidden" [(ngModel)]="newWork.hidden" required>
+
+      <label for="customerLink">customerLink:</label>
+      <input type="text" id="customerLink" name="customerLink" [(ngModel)]="newWork.customerLink" required>
+
+  
+      <button class="btn btn-primary mr-2" type="submit">Add Work</button>
+    </form>
+</div>
+
+    <table class="mat-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Image URL</th>
+          <th>Hidden</th>
+          <th>Customer Link</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let work of works">
+          <td>{{ work.id }}</td>
+          <td>{{ work.title }}</td>
+          <td>{{ work.description }}</td>
+          <td>{{ work.imageUrl }}</td>
+          <td>{{ work.hidden }}</td>
+          <td>{{ work.customerLink }}</td>
+          <td class="edit-buttons">
+            <button class="btn btn-success mr-4" *ngIf="!selectedWork" (click)="openEditModal(work)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteWork(work.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+      <app-edit-work
+      *ngIf="selectedWork"
+      [work]="selectedWork"
+      (saveChanges)="saveChanges(selectedWork)"
+      (cancel)="cancelEdit()"
+    ></app-edit-work>
+
+
+
+  </div>
+  
